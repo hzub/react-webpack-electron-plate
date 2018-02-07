@@ -10,6 +10,7 @@ const url = require('url');
 
 const SCHEMA = 'electron';
 const SCHEMA_URL = `${SCHEMA}://local`;
+const sqlite3 = require('sqlite3');
 
 let mainWindow;
 
@@ -49,3 +50,5 @@ app.on('activate', function () {
     createWindow()
   }
 });
+
+exports.sqlite3 = sqlite3;

@@ -2,19 +2,23 @@ const paths = require('./paths.js');
 
 const baseConfig = require('./webpack.base.js');
 
-module.exports = () => ({
-  devtool: 'none',
+const DEFINES = {
+  ELECTRON: true,
+};
+
+module.exports = (env) => ({
+  target: 'electron-renderer',
+  devtool: 'cheap-module-eval-source-map',
   entry: baseConfig.getEntry(),
   output: baseConfig.getOutput(),
   context: baseConfig.getContext(),
   plugins: [
-    ...baseConfig.getBasePlugins(),
-    ...baseConfig.getProdPlugins(),
-    ...baseConfig.getElectronPlugins(),
+    ...baseConfig.getBasePlugins(env),
+    ...baseConfig.getDefinePlugin(DEFINES),
   ],
   module: {
     rules: [
-      ...baseConfig.getProdStyleRules(),
+      ...baseConfig.getDevStyleRules(),
       ...baseConfig.getBabelRules(),
       ...baseConfig.getImageRules(),
     ]

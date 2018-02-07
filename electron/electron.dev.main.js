@@ -7,16 +7,15 @@ const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
 const url = require('url');
+const sqlite3 = require('sqlite3');
 
 let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 800, height: 600 })
 
-  const xyz = mainWindow.loadURL('http://localhost:8080/index.html');
-  console.info('aaaaa');
-  console.info(xyz);
-  // mainWindow.webContents.openDevTools()
+  mainWindow.loadURL('http://localhost:8080/index.html');
+  mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', function () {
     mainWindow = null;
@@ -40,3 +39,5 @@ app.on('activate', function () {
     createWindow()
   }
 });
+
+exports.sqlite3 = sqlite3;

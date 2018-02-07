@@ -16,5 +16,8 @@ module.exports = {
   "rules": {
     "react/jsx-filename-extension": "off",
     "no-console": 1
+  },
+  "globals": {
+    "ELECTRON": true,
   }
 };

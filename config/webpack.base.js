@@ -34,10 +34,11 @@ const getBasePlugins = () => ([
   }),
 ]);
 
+const getDefinePlugin = (entry) => ([
+  new webpack.DefinePlugin(entry),
+]);
+
 const getElectronPlugins = () => ([
-  new CleanWebpackPlugin(paths.appDistElectronRelative, {
-    root: paths.appRoot,
-  }),
   new CopyWebpackPlugin(
     [
       { from: paths.appElectronProdMain, to: 'main.js' },
@@ -47,9 +48,6 @@ const getElectronPlugins = () => ([
 ]);
 
 const getProdPlugins = () => ([
-  new CleanWebpackPlugin(paths.appDistRelative, {
-    root: paths.appRoot,
-  }),
   new ExtractTextPlugin(paths.appDistStylesRelative),
   new webpack.optimize.UglifyJsPlugin(),
 ]);
@@ -77,8 +75,6 @@ const getImageRules = () => ([
     }]
   }
 ]);
-
-
 
 const getDevStyleRules = () => ([
   {
@@ -136,4 +132,5 @@ module.exports = {
   getProdStyleRules,
   getProdPlugins,
   getResolve,
+  getDefinePlugin,
 };

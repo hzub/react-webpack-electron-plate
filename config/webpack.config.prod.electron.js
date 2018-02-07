@@ -7,6 +7,7 @@ const DEFINES = {
 };
 
 module.exports = () => ({
+  target: 'electron-renderer',
   devtool: 'none',
   entry: baseConfig.getEntry(),
   output: baseConfig.getOutput(),
@@ -14,6 +15,7 @@ module.exports = () => ({
   plugins: [
     ...baseConfig.getBasePlugins(),
     ...baseConfig.getProdPlugins(),
+    ...baseConfig.getElectronPlugins(),
     ...baseConfig.getDefinePlugin(DEFINES),
   ],
   module: {
